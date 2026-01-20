@@ -1,0 +1,166 @@
+{
+  "level_name": "Forsaken Dwarven Depths",
+
+  "data": {
+    "nodes": {
+      "rooms": [
+        {
+          "name": "Collapsed Entrance Tunnel",
+          "description": "A narrow stone corridor partially caved in, with old dwarven warning runes etched into the walls."
+        },
+        {
+          "name": "Hall of Echoing Anvils",
+          "description": "A vast chamber filled with rusted anvils and long-silent forges. The air smells of soot and ancient metal."
+        },
+        {
+          "name": "Fallen Bridge Over Chasm",
+          "description": "A deep chasm splits the room. A broken stone bridge hangs precariously, leaving only a narrow ledge to cross."
+        },
+        {
+          "name": "Abandoned Dwarven Market",
+          "description": "Dust-covered stalls line the walls. Crates of cracked stoneware and broken tools remain where they were left centuries ago."
+        },
+        {
+          "name": "Crystal Lantern Grove",
+          "description": "Bioluminescent crystals grow like lanterns from the floor and ceiling, casting shifting blue-green light."
+        },
+        {
+          "name": "Throne of the Deep King",
+          "description": "A grand chamber with a broken obsidian throne. Ancient banners hang in tatters."
+        },
+        {
+          "name": "Sealed Ritual Vault",
+          "description": "A circular stone room sealed with runic patterns. It is eerily quiet. This room is a dead end."
+        }
+      ],
+
+      "objects": [
+        {
+          "name": "Ancient Dwarven Hammer",
+          "description": "A heavy forge hammer, its grip worn smooth by centuries of use.",
+          "is_objective": false
+        },
+        {
+          "name": "Cracked Crystal Orb",
+          "description": "A palm-sized orb of crystal with faint inner light flickering like a dying ember.",
+          "is_objective": false
+        },
+        {
+          "name": "Deep King's Crown",
+          "description": "A jewel-encrusted.",
+          "is_objective": true
+        }
+      ],
+
+      "creatures": [
+        {
+          "name": "Stoneback Beetle",
+          "description": "A large beetle with rocky plates for armor, scuttling among the ruins.",
+          "health": 60
+        },
+        {
+          "name": "Forgotten Iron Sentinel",
+          "description": "A dormant dwarven automaton that sputters to life when intruders approach.",
+          "health": 180
+        },
+        {
+          "name": "Crystal Wisp",
+          "description": "A drifting mote of shimmering energy feeding on the glowing crystals.",
+          "health": 40
+        }
+      ]
+    },
+
+    "relationships": {
+      "connects_to": [
+        {
+          "from_room": "Collapsed Entrance Tunnel",
+          "to_room": "Hall of Echoing Anvils",
+          "passageway": "Stone archway",
+          "description": "A stout archway reinforced by dwarven engineering."
+        },
+        {
+          "from_room": "Hall of Echoing Anvils",
+          "to_room": "Fallen Bridge Over Chasm",
+          "passageway": "Broken hallway",
+          "description": "A cracked passage leading toward a deep chasm."
+        },
+        {
+          "from_room": "Fallen Bridge Over Chasm",
+          "to_room": "Abandoned Dwarven Market",
+          "passageway": "Narrow cliff ledge",
+          "description": "A perilous ledge carved along the cliff face."
+        },
+        {
+          "from_room": "Abandoned Dwarven Market",
+          "to_room": "Crystal Lantern Grove",
+          "passageway": "Crystal-lit corridor",
+          "description": "Faint glowing crystals line the walls."
+        },
+        {
+          "from_room": "Crystal Lantern Grove",
+          "to_room": "Throne of the Deep King",
+          "passageway": "Grand stone stairway",
+          "description": "A stairway descending into royal chambers."
+        },
+        {
+          "from_room": "Crystal Lantern Grove",
+          "to_room": "Sealed Ritual Vault",
+          "passageway": "Runic tunnel",
+          "description": "Ancient runes flicker faintly around the archway. This branch is a dead end."
+        },
+        {
+          "from_room": "Hall of Echoing Anvils",
+          "to_room": "Collapsed Entrance Tunnel",
+          "passageway": "Stone archway",
+          "description": "A stout archway reinforced by dwarven engineering."
+        },
+        {
+          "from_room": "Fallen Bridge Over Chasm",
+          "to_room": "Hall of Echoing Anvils",
+          "passageway": "Broken hallway",
+          "description": "A cracked passage leading toward a deep chasm."
+        },
+        {
+          "from_room": "Abandoned Dwarven Market",
+          "to_room": "Fallen Bridge Over Chasm",
+          "passageway": "Narrow cliff ledge",
+          "description": "A perilous ledge carved along the cliff face."
+        },
+        {
+          "from_room": "Crystal Lantern Grove",
+          "to_room": "Abandoned Dwarven Market",
+          "passageway": "Crystal-lit corridor",
+          "description": "Faint glowing crystals line the walls."
+        },
+        {
+          "from_room": "Throne of the Deep King",
+          "to_room": "Crystal Lantern Grove",
+          "passageway": "Grand stone stairway",
+          "description": "A stairway descending into royal chambers."
+        },
+        {
+          "from_room": "Sealed Ritual Vault",
+          "to_room": "Crystal Lantern Grove",
+          "passageway": "Runic tunnel",
+          "description": "Ancient runes flicker faintly around the archway. This branch is a dead end."
+        }
+      ],
+
+      "contains": [
+        {
+          "room": "Hall of Echoing Anvils",
+          "object": "Ancient Dwarven Hammer"
+        },
+        {
+          "room": "Crystal Lantern Grove",
+          "object": "Cracked Crystal Orb"
+        },
+        {
+          "room": "Throne of the Deep King",
+          "object": "Deep King's Crown"
+        }
+      ]
+    }
+  }
+}
