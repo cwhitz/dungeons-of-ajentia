@@ -2,6 +2,8 @@ import streamlit as st
 from src.party.build_party import build_party_graph
 from src.party.invoke_party import stream_party_graph
 from src.party.stream_party import stream_party_graph_to_streamlit
+from src.display.thought_card import render_thought_card
+from src.display.action_card import render_action_card
 
 st.set_page_config(page_title="Dungeons of Ajentia", layout="wide")
 
@@ -14,12 +16,16 @@ if "game_started" not in st.session_state:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+if "events" not in st.session_state:
+    st.session_state.events = []
+
 if "party_selection" not in st.session_state:
     st.session_state.party_selection = {
-        "ranger": {'display': 'Ranger 🏹', 'active': True},
-        "wizard": {'display': 'Wizard 🔮', 'active': True},
-        "healer": {'display': 'Healer 💊', 'active': True},
-        "barbarian": {'display': 'Barbarian 🪓', 'active': True},
+        "ranger": {'display': 'Ranger 🏹', 'active': True, 'image': 'images/ranger.jpg'},
+        "wizard": {'display': 'Wizard 🔮', 'active': True, 'image': 'images/wizard.jpg'},
+        "healer": {'display': 'Healer 💊', 'active': True, 'image': 'images/healer.jpg'},
+        "barbarian": {'display': 'Barbarian 🪓', 'active': True, 'image': 'images/barbarian.jpg'},
+        "leader": {'display': 'Leader 🗡️', 'active': True, 'image': 'images/leader.jpg'},
     }
 
 # ============================================================
@@ -58,6 +64,7 @@ if not st.session_state.game_started:
 
     cols = st.columns(5)
     for i, (char_key, char_info) in enumerate(st.session_state.party_selection.items()):
+        if char_key == "leader": continue  # Leader is always active
         with cols[i]:
             st.session_state.party_selection[char_key]['active'] = st.toggle(
                 char_info['display'],
@@ -109,6 +116,19 @@ else:
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
+
+    for e in st.session_state.events:
+        if e["type"] == "thought":
+            render_thought_card(
+                agent_name=e["agent"],
+                thought=e["thought"],
+                image_path=st.session_state.party_selection[e["agent"].lower()]["image"]
+            )
+        elif e["type"] == "action":
+            render_action_card(
+                agent_name=e["agent"],
+                action=e["event"]
+            )
 
     # Chat input
     if st.session_state.mode == "Autonomous (LLMs control all agents)":

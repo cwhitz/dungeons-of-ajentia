@@ -2,7 +2,8 @@
 from src.agents.leader.leader_tools import (
     make_find_exit_passageways,
     make_use_passageway,
-    make_announce_thought_tool
+    make_announce_thought_tool,
+    make_search_for_objects
 )
 
 from src.agents.party_member import PartyMember
@@ -18,16 +19,12 @@ class LeaderAgent(PartyMember):
         self.current_room = None
         self.messages = []
 
-        self.find_exit_tool = make_find_exit_passageways(self)
-        self.use_passageway_tool = make_use_passageway(self)
-        self.announce_thought_tool = make_announce_thought_tool(self)
-
         with open("src/agents/leader/leader_prompt.txt", "r") as f:
             leader_system_prompt = f.read()
 
         self.agent = create_agent(
             model="o3-mini",
-            tools=[self.find_exit_tool, self.use_passageway_tool, self.announce_thought_tool],
+            tools=[make_find_exit_passageways(self), make_use_passageway(self), make_announce_thought_tool(self), make_search_for_objects(self)],
             system_prompt=leader_system_prompt,
         )
 

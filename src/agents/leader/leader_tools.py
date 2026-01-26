@@ -15,6 +15,19 @@ def make_find_exit_passageways(agent):
     
     return Tool(name="find_exit_passageways", func=run, description="Find exits. No arguements.", args_schema=None)
 
+def make_search_for_objects(agent):
+    def run(x, **kwargs):
+        query = """
+        MATCH (r:Room {name: $room_name})-[:CONTAINS]->(o:Object)
+        RETURN o.name as object, o.description as description
+        """
+        objects = db.execute_and_fetch(query, {'room_name': agent.current_room})
+        if objects:
+            return f"You find: {[o['object'] + ': ' + o['description'] for o in objects]}"
+        return "No objects found here."
+    
+    return Tool(name="search_for_objects", func=run, description="Search for objects in the current room. No arguements.", args_schema=None)
+
 class UsePassagewayInputSchema(BaseModel):
     passageway: str
 
