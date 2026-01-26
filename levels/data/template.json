@@ -1,0 +1,45 @@
+{
+  "level_name": "",
+
+  "data": {
+    "nodes": {
+      "rooms": [
+        {
+          "name": "",
+          "description": ""
+        }
+      ],
+      "objects": [
+        {
+          "name": "",
+          "description": ""
+        }
+      ],
+      "creatures": [
+        {
+          "name": "",
+          "description": "",
+          "health": 100
+        }
+      ]
+    },
+
+    "relationships": {
+      "connects_to": [
+        {
+          "from_room": "",
+          "to_room": "",
+          "passageway": "",
+          "description": ""
+        }
+      ],
+      "contains": [
+        {
+          "room": "",
+          "object": "",
+          "creature": ""
+        }
+      ]
+    }
+  }
+}
