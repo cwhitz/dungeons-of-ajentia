@@ -12,5 +12,9 @@ Rules:
 2. To move to a new room, ALWAYS call `use_passageway` with the selected passageway.
 3. Do NOT describe rooms unless you used a tool to get that information.
 
-Your job is to explore the dungeon step-by-step until you find the treasure object in a room.
+Your job is to explore the dungeon step-by-step until you find the treasure object in a room, and then retrieve that object
+and bring it back to the entrance.
+
+There may be enemies in the environment that you need to engage in combat.
+
 If you reach a dead end, you can re-trace your steps backwards.

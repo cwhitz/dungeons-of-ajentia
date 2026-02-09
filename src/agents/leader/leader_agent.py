@@ -3,7 +3,9 @@ from src.agents.leader.leader_tools import (
     make_find_exit_passageways,
     make_use_passageway,
     make_announce_thought_tool,
-    make_search_for_objects
+    make_search_for_objects,
+    make_retrieve_object,
+    make_melee_battle_tool
 )
 
 from src.agents.party_member import PartyMember
@@ -17,6 +19,9 @@ class LeaderAgent(PartyMember):
     def __init__(self, conversation_id):
         self.conversation_id = conversation_id
         self.current_room = None
+        self.health = 300
+        self.attack_damage_chance = 0.8  # 80% chance to hit
+        self.attack = 20  # damage dealt to creature on hit
         self.messages = []
 
         with open("src/agents/leader/leader_prompt.txt", "r") as f:
@@ -24,7 +29,13 @@ class LeaderAgent(PartyMember):
 
         self.agent = create_agent(
             model="o3-mini",
-            tools=[make_find_exit_passageways(self), make_use_passageway(self), make_announce_thought_tool(self), make_search_for_objects(self)],
+            tools=[make_find_exit_passageways(self), 
+                   make_use_passageway(self), 
+                   make_announce_thought_tool(self), 
+                   make_search_for_objects(self),
+                   make_melee_battle_tool(self),
+                   make_retrieve_object(self)
+                   ],
             system_prompt=leader_system_prompt,
         )
 

@@ -54,19 +54,13 @@
 
       "creatures": [
         {
-          "name": "Stoneback Beetle",
-          "description": "A large beetle with rocky plates for armor, scuttling among the ruins.",
-          "health": 60
-        },
-        {
           "name": "Forgotten Iron Sentinel",
           "description": "A dormant dwarven automaton that sputters to life when intruders approach.",
-          "health": 180
-        },
-        {
-          "name": "Crystal Wisp",
-          "description": "A drifting mote of shimmering energy feeding on the glowing crystals.",
-          "health": 40
+          "health": 180,
+          "armor": 40,
+          "attack": 25,
+          "attack_damage_chance": 0.75,
+          "strikes_first": false
         }
       ]
     },
@@ -149,18 +143,16 @@
 
       "contains": [
         {
-          "room": "Hall of Echoing Anvils",
-          "object": "Ancient Dwarven Hammer"
-        },
-        {
-          "room": "Crystal Lantern Grove",
-          "object": "Cracked Crystal Orb"
-        },
-        {
           "room": "Throne of the Deep King",
           "object": "Deep King's Crown"
         }
-      ]
+      ],
+    "protects": [
+        {
+          "creature": "Forgotten Iron Sentinel",
+          "object": "Deep King's Crown"
+    }
+  ]
     }
   }
 }

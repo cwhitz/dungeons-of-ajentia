@@ -20,6 +20,9 @@ class Creature(Node):
     name: str = Field(index=True, db=db)
     description: str
     health: int = 100
+    attack: int = 10
+    strikes_first: bool = False
+    attack_damage_chance: float = 0.5
 
 
 # ==================== RELATIONSHIP CLASSES ====================
@@ -31,3 +34,8 @@ class ConnectsTo(Relationship, type="CONNECTS_TO"):
 
 class Contains(Relationship, type="CONTAINS"):
     """Room contains an object or creature"""
+
+class Protects(Relationship, type="PROTECTS"):
+    """A creature protects an object"""
+    creature: str
+    object: str

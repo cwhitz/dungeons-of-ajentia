@@ -21,7 +21,7 @@ def stream_party_graph_to_streamlit(party_graph, messages):
         {"messages": messages},
         stream_mode=["messages", "updates"],
         subgraphs=True,
-        config={'recursion_limit': 60}
+        config={'recursion_limit': 100}
     ):
         if stream_mode == "messages":
             token, metadata = data

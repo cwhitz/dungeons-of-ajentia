@@ -1,7 +1,5 @@
-import json
-from typing import Dict, Any
 from gqlalchemy import Memgraph
-from db.schema import Room, Object, Creature, ConnectsTo, Contains
+from db.schema import Room, Object, Creature, ConnectsTo, Contains, Protects
 from db.session import db
 
 
@@ -82,7 +80,10 @@ def build_level_from_json(level: dict):
         creature = Creature(
             name=c["name"],
             description=c["description"],
-            health=c.get("health", 100)
+            health=c.get("health", 100),
+            attack=c.get("attack", 10),
+            strikes_first=c.get("strikes_first", False),
+            attack_damage_chance=c.get("attack_damage_chance", 0.5)
         )
         creature.save(db)
         creatures_by_name[creature.name] = creature
@@ -121,6 +122,20 @@ def build_level_from_json(level: dict):
         contains.save(db)
 
         print(f"  {room.name} CONTAINS {target.name}")
+
+    print("\n === Creating PROTECTS relationships ===")
+    for rel in relationships.get("protects", []):
+        creature = creatures_by_name[rel["creature"]]
+        obj = objects_by_name[rel["object"]]
+
+        protects = Protects(
+            _start_node_id=creature._id,
+            _end_node_id=obj._id,
+            creature=creature.name,
+            object=obj.name
+        )
+        protects.save(db)
+        
 
     print("\n=== Level Loaded Successfully ===")
 
